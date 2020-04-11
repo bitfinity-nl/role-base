@@ -17,7 +17,26 @@
     packages:
     - qemu-guest-agent
 
-- name: "Add group for administrative account"
+- name: "Generate temporary password for user {{ base_admin_account }}"
+  command: "mkpasswd --method=sha-512 {{ base_admin_pass }}"
+  register: encrypted_password
+  delegate_to: 127.0.0.1
   
-- name: "Add local administrative account"
-  
+- name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_account }}"
+  group:
+    name: "{{ base_admin_group }}"
+    state: present
+
+- name: "Add local administrative account {{ base_admin_account }}"
+  user:
+    name: "{{ base_admin_account }}"
+    comment: "Local administrative account"
+    shell: /bin/bash
+    group: "{{ base_admin_group }}"
+    groups: sudo
+    create_home: yes
+    generate_ssh_key: yes
+    ssh_key_bits: 4096
+    ssh_key_file: .ssh/id_rsa
+    password: "{{ encrypted_password.stdout }}"
+    update_password: always
