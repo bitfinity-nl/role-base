@@ -52,3 +52,7 @@
     name: "{{ base_temp_group }}"
     state: present
     
+- name: "Ensure cloudinit file /etc/sudoers.d//90-cloud-init-users does not exists."
+  file:
+    path: /etc/sudoers.d//90-cloud-init-users
+    state: absent

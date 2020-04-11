@@ -16,7 +16,16 @@
 #   base_admin_pass  : 'password'  # Set the password for the administrative account.
 #   base_admin_group : 'admin'     # Set the group for the administrative account.
 #
-#
 base_admin_user  : '{{ def_ubt_admin }}'
 base_admin_pass  : '{{ def_ubt_pass }}'
 base_admin_group : '{{ base_admin_user }}'
+
+
+# -- Temporary (cloudinit)account --
+#
+# Variable(s):
+#   base_temp_user  : 'tempuser'    # Set temp user that wil be removd.
+#   base_temp_group : 'tempgroup'   # Set temp group that wil be removed.
+#
+base_temp_user  : '{{ def_ubt_temp_user }}'
+base_temp_group : '{{ def_ubt_temp_group }}'
