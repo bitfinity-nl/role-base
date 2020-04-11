@@ -17,19 +17,19 @@
     packages:
     - qemu-guest-agent
 
-- name: "Generate temporary password for user {{ base_admin_account }}"
+- name: "Generate temporary password for user {{ base_admin_user }}"
   command: "mkpasswd --method=sha-512 {{ base_admin_pass }}"
   register: encrypted_password
   delegate_to: 127.0.0.1
   
-- name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_account }}"
+- name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_user }}"
   group:
     name: "{{ base_admin_group }}"
     state: present
 
-- name: "Add local administrative account {{ base_admin_account }}"
+- name: "Add local administrative account {{ base_admin_user }}"
   user:
-    name: "{{ base_admin_account }}"
+    name: "{{ base_admin_user }}"
     comment: "Local administrative account"
     shell: /bin/bash
     group: "{{ base_admin_group }}"
