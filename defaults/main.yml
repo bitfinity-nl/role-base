@@ -18,5 +18,5 @@
 #
 #
 base_admin_user  : '{{ def_ubt_admin }}'
-base_admin_pass  : '{{ defa_ubt_pass }}'
+base_admin_pass  : '{{ def_ubt_pass }}'
 base_admin_group : '{{ base_admin_user }}'
