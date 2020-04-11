@@ -1,0 +1,23 @@
+---
+# Title: role-base
+# 
+# Author: Bitfinity-NL
+# File: tasks/main.yml
+#
+# Description:
+#   Base settings for Ubuntu server on a Proxmox Environment.
+#
+
+- name: "Install additional packages"
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - qemu-guest-agent
+
+- name: "Add group for administrative account"
+  
+- name: "Add local administrative account"
+  
