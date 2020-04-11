@@ -40,3 +40,15 @@
     ssh_key_file: .ssh/id_rsa
     password: "{{ encrypted_password.stdout }}"
     update_password: always
+
+- name: "Ensure temporary (cloudinit) user {{ base_temp_user }} does not exists and remove homedirectory"
+  user:
+    name: "{{ base_temp_user }}"
+    state: absent
+    remove: yes
+
+- name: "Ensure the group of the temporary (cloudinit) user {{ base_temp_group }} does not exists."
+  group:
+    name: "{{ base_temp_group }}"
+    state: present
+    
