@@ -1,0 +1,22 @@
+---
+# Title: role-base
+# 
+# Author: Bitfinity-NL
+# File: defaults/main.yml
+#
+# Description:
+#   Base settings for Ubuntu server on a Proxmox Environment.
+#
+# * Change the variable(s) in group_vars, playbook or here.
+
+# -- Local administrative account --
+# 
+# Variable(s):
+#   base_admin_user  : 'admin'     # Set the username for the administrative account.
+#   base_admin_pass  : 'password'  # Set the password for the administrative account.
+#   base_admin_group : 'admin'     # Set the group for the administrative account.
+#
+#
+base_admin_user  : '{{ def_ubt_admin }}'
+base_admin_pass  : '{{ defa_ubt_pass }}'
+base_admin_group : '{{ base_admin_user }}'
