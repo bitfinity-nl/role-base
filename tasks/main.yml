@@ -18,9 +18,9 @@
     - qemu-guest-agent
 
 - name: "Generate temporary password for user {{ base_admin_user }}"
-  local_action: command "mkpasswd --method=sha-512 {{ base_admin_pass }}"
+  command: "mkpasswd --method=sha-512 {{ base_admin_pass }}"
   register: encrypted_password
-  become: yes
+  #become: yes
   
 - name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_user }}"
   group:
