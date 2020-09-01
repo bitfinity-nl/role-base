@@ -25,6 +25,7 @@
   group:
     name: "{{ base_admin_group }}"
     state: present
+  become: yes
 
 - name: "Add local administrative account {{ base_admin_user }}"
   user:
