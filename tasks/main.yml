@@ -20,12 +20,12 @@
 - name: "Generate temporary password for user {{ base_admin_user }}"
   local_action: command "mkpasswd --method=sha-512 {{ base_admin_pass }}"
   register: encrypted_password
+  become: yes
   
 - name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_user }}"
   group:
     name: "{{ base_admin_group }}"
     state: present
-  become: yes
 
 - name: "Add local administrative account {{ base_admin_user }}"
   user:
