@@ -15,6 +15,7 @@
     update_cache: yes
   vars:
     packages:
+    - whois
     - qemu-guest-agent
 
 - name: "Generate temporary password for user {{ base_admin_user }}"
