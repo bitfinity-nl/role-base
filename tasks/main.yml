@@ -8,12 +8,9 @@
 #   Base settings for Ubuntu server on a Proxmox Environment.
 #
 
-- name: "Update alle respitories and packages"
-  apt:
-    name: "*"
-    state: latest
-    update_cache: yes
-    
+- name: "Update alle repositories"
+  raw: apt update
+
 - name: "Install additional packages"
   apt:
     name: "{{ packages }}"
@@ -21,7 +18,6 @@
 #    update_cache: no
   vars:
     packages:
-    - apt-transport-https
     - whois
     - qemu-guest-agent
 
