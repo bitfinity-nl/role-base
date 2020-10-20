@@ -8,6 +8,12 @@
 #   Base settings for Ubuntu server on a Proxmox Environment.
 #
 
+- name: "Update alle respitories and packages"
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    
 - name: "Install additional packages"
   apt:
     name: "{{ packages }}"
@@ -18,12 +24,6 @@
     - apt-transport-https
     - whois
     - qemu-guest-agent
-
-- name: "Update alle respitories and packages"
-  apt:
-    name: "*"
-    state: latest
-    update_cache: yes
 
 - name: "Generate temporary password for user {{ base_admin_user }}"
   command: "mkpasswd --method=sha-512 {{ base_admin_pass }}"
