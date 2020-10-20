@@ -12,7 +12,7 @@
   apt:
     name: "{{ packages }}"
     state: present
-    update_cache: no
+#    update_cache: no
   vars:
     packages:
     - apt-transport-https
