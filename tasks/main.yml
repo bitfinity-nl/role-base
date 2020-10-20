@@ -8,7 +8,7 @@
 #   Base settings for Ubuntu server on a Proxmox Environment.
 #
 
-- name: "Update alle repositories"
+- name: "Update all repositories (Fix 'update_cache: true' not working)"
   raw: apt update
 
 - name: "Install additional packages"
