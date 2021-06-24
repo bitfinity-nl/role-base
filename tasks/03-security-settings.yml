@@ -1,0 +1,15 @@
+---
+# Title: firewall
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: bitfinity-nl
+# File: tasks/03-security-settings.yml
+#
+# Description:
+#   Playbook voor configuring security settings.
+
+- name: "Add firewall profile for openssh traffic on port 22/tcp and enable firewall"
+  ufw:
+    rule: allow
+    name: openssh
+    state: enabled
