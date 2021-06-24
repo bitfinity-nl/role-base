@@ -29,7 +29,7 @@ admin_group   : 'sysadmin'
 
 # -- Local network settings
 networking_interface : 'ens18'
-networking_ip        : '192.168.0.1'
+networking_ip        : '192.168.0.1/24'
 networking_gateway   : '192.168.0.254'
 networking_dns1      : '192.168.0.254'
 networking_dns2      : '192.168.0.253'
