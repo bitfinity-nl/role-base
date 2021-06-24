@@ -1,0 +1,17 @@
+
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+   {{ networking_interface}}:
+    addresses:
+     - {{ networking_ip }}
+    gateway4: {{ networking_gateway }}
+    dhcp4: no
+    nameservers:
+     addresses:
+      - {{ networking_dns1 }}
+      - {{ networking_dns2 }}
+    optional: true
