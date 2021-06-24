@@ -66,4 +66,8 @@ networking_dns2      : '192.168.0.253'
 #   - /etc/selfcert/live/{{ cert_servername }}/fullchain.pem
 #   - /etc/selfcert/live/{{ cert_servername }}/privkey.pem
 #
-cert_servername : '{{ ansible_hostname }}'
+cert_servername  : '{{ ansible_hostname }}'
+cert_path        : '/etc/selfcert/live/{{ cert_servername }}'
+cert_private_key : '/etc/selfcert/live/{{ cert_servername }}/privkey.pem'
+cert_csr_file    : '/etc/ssl/private/{{ cert_servername }}.csr'
+cert_fullchain   : '/etc/selfcert/live/{{ cert_servername }}/fullchain.pem'
