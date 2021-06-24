@@ -1,62 +1,28 @@
 ---
-# Title: role-base
-# 
-# Author: Bitfinity-NL
+# Title: main.yml
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: IT Operations
 # File: tasks/main.yml
 #
 # Description:
-#   Base settings for Ubuntu server on a Proxmox Environment.
-#
+#   Playbook for installing InvoiceNinja
+#   on a Ubuntu server.
 
-- name: "Update all repositories (Fix 'update_cache: true' not working)"
-  raw: apt update
-
-- name: "Install additional packages"
-  apt:
-    name: "{{ packages }}"
-    state: present
-#    update_cache: no
-  vars:
-    packages:
-    - whois
-    - qemu-guest-agent
-
-- name: "Generate temporary password for user {{ base_admin_user }}"
-  command: "mkpasswd --method=sha-512 {{ base_admin_pass }}"
-  register: encrypted_password
-  #become: yes
-  
-- name: "Add group {{ base_admin_group }} for administrative account {{ base_admin_user }}"
-  group:
-    name: "{{ base_admin_group }}"
-    state: present
-
-- name: "Add local administrative account {{ base_admin_user }}"
-  user:
-    name: "{{ base_admin_user }}"
-    comment: "Local administrative account"
-    shell: /bin/bash
-    group: "{{ base_admin_group }}"
-    groups: sudo
-    create_home: yes
-    generate_ssh_key: yes
-    ssh_key_bits: 4096
-    ssh_key_file: .ssh/id_rsa
-    password: "{{ encrypted_password.stdout }}"
-    update_password: always
-
-- name: "Ensure temporary (cloudinit) user {{ base_temp_user }} does not exists and remove homedirectory"
-  user:
-    name: "{{ base_temp_user }}"
-    state: absent
-    remove: yes
-
-- name: "Ensure the group of the temporary (cloudinit) user {{ base_temp_group }} does not exists."
-  group:
-    name: "{{ base_temp_group }}"
-    state: present
-    
-- name: "Ensure cloudinit file /etc/sudoers.d//90-cloud-init-users does not exists."
+- name: "Create Ansible directory structure"
   file:
-    path: /etc/sudoers.d//90-cloud-init-users
-    state: absent
+    name: /etc/ansible/roles/
+    state: directory
+    
+- name: "Install and configure base settings"
+  import_tasks: 01-account-settings.yml
+
+- name: "Configure Network settings"
+  import_tasks: 02-network-settings.yml
+
+- name: "Install and configure UFW Firewall for UrBackup server"
+  import_tasks: 03-security-settings.yml
+
+- name: "Generate selfsigned certificates"
+  import_tasks: 04-selfsigned-certificate.yml
+
