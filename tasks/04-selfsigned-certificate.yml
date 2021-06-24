@@ -21,22 +21,22 @@
     
 - name: Ensure directory exists for local self-signed TLS certs.
   file:
-    path: /etc/selfcert/live/{{ cert_servername }}
+    path: "{{ cert_path }}"
     state: directory
 
 - name: Generate an OpenSSL private key.
   openssl_privatekey:
-    path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+    path: "{{ cert_private_key }}"
 
 - name: Generate an OpenSSL CSR.
   openssl_csr:
-    path: /etc/ssl/private/{{ cert_servername }}.csr
-    privatekey_path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+    path: "{{ cert_csr_file }}"
+    privatekey_path: "{{ cert_private_key }}"
     common_name: "{{ cert_servername }}"
 
 - name: Generate a Self Signed OpenSSL certificate.
   openssl_certificate:
-    path: /etc/selfcert/live/{{ cert_servername }}/fullchain.pem
-    privatekey_path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
-    csr_path: /etc/ssl/private/{{ cert_servername }}.csr
+    path: "{{ cert_fullchain }}"
+    privatekey_path: "{{ cert_private_key }}"
+    csr_path: "{{ cert_csr_file }}"
     provider: selfsigned
