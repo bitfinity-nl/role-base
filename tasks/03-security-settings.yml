@@ -11,5 +11,5 @@
 - name: "Add firewall profile for openssh traffic on port 22/tcp and enable firewall"
   ufw:
     rule: allow
-    name: openssh
+    name: OpenSSH
     state: enabled
