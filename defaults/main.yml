@@ -23,9 +23,9 @@ bootstrap_group   : '{{ bootstrap_user }}'
 bootstrap_sudoers : '{{ bootstrap_user }}'
 
 # -- Local system settings --
-admin_user                   : 'sysadmin'
-admin_pass                   : 'Welkom123'
-admin_group                  : 'sysadmin'
+admin_user    : 'sysadmin'
+admin_pass    : 'Welkom123'
+admin_group   : 'sysadmin'
 
 # -- Selfsigned Certificate --
 invoiceninja_selfsigned_sslcertificatefile   : '/etc/selfcert/live/{{ invoiceninja_url }}/fullchain.pem'
