@@ -10,31 +10,60 @@
 # * Change the variable(s) in group_vars, playbook or here.
 
 
-# -- Local administrative account --
-# 
-# Variable(s):
-#   base_admin_user  : 'admin'     # Set the username for the administrative account.
-#   base_admin_pass  : 'password'  # Set the password for the administrative account.
-#   base_admin_group : 'admin'     # Set the group for the administrative account.
-#
 # -- Bootstrap settings --
+#
+# Variable(s):
+#   bootstrap_user    : 'preinstall'
+#   bootstrap_group   : '{{ bootstrap_user }}'
+#   bootstrap_sudoers : '{{ bootstrap_user }}'
+#
 bootstrap_user    : 'preinstall'
 bootstrap_group   : '{{ bootstrap_user }}'
 bootstrap_sudoers : '{{ bootstrap_user }}'
 
-# -- Local system settings --
-admin_user    : 'sysadmin'
-admin_pass    : 'Welkom123'
-admin_group   : 'sysadmin'
+
+# -- Local administrative account --
+#
+# Variable(s):
+#   admin_user  : 'sysadmin'   # Set the username for the administrative account.
+#   admin_pass  : 'Welkom123'  # Set the password for the administrative account.
+#   admin_group : 'sysadmin'   # Set the group for the administrative account.
+#
+# Description:
+#   Add default administrative local account.
+#
+admin_user  : 'sysadmin'
+admin_pass  : 'Welkom123'
+admin_group : 'sysadmin'
+
 
 # -- Local network settings
+#
+# Variable(s):
+#   networking_interface : 'ens18'           # Set the interfaces which this applies to.
+#   networking_ip        : '192.168.0.1/24'  # Set static IP address and subnet.
+#   networking_gateway   : '192.168.0.254'   # Set default gateway.
+#   networking_dns1      : '192.168.0.254'   # Set the primary DNS.
+#   networking_dns2      : '192.168.0.253'   # Set the secondary DNS.
+#
+# Description:
+#   Configure network settings.
+#
 networking_interface : 'ens18'
 networking_ip        : '192.168.0.1/24'
 networking_gateway   : '192.168.0.254'
 networking_dns1      : '192.168.0.254'
 networking_dns2      : '192.168.0.253'
 
-# -- Selfsigned Certificate --
-invoiceninja_selfsigned_sslcertificatefile   : '/etc/selfcert/live/{{ invoiceninja_url }}/fullchain.pem'
-invoiceninja_selfsigned_sslertificatekeyfile : '/etc/selfcert/live/{{ invoiceninja_url }}/privkey.pem'
 
+# -- Selfsigned Certificate --
+#
+# Variable(s):
+#   cert_servername : '{{ ansible_hostname }}'  # Set name of the selfsigned certificate.
+#
+# Description:
+#   Generates selfsigned certificates that can be found on:
+#   - /etc/selfcert/live/{{ cert_servername }}/fullchain.pem
+#   - /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+#
+cert_servername : '{{ ansible_hostname }}'
