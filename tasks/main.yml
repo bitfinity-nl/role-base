@@ -23,6 +23,6 @@
 - name: "Configure security settings"
   import_tasks: 03-security-settings.yml
 
-#- name: "Generate selfsigned certificates"
-#  import_tasks: 04-selfsigned-certificate.yml
+- name: "Generate selfsigned certificates"
+  import_tasks: 04-selfsigned-certificate.yml
 
