@@ -1,0 +1,15 @@
+ 
+---
+# Title: handlers
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: bitfinity-nl
+# File: handlers/main.yml
+#
+# Description:
+#   Playbook voor configuring handlers
+  
+- name: "netplan_apply"
+  command: sudo netplan apply
+  async: 45
+  poll: 0
