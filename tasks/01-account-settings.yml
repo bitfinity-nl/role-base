@@ -1,0 +1,35 @@
+---
+# Title: base settings
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: bitfinity-nl
+# File: tasks/01-account-settings.yml
+#
+# Description:
+#   This task file wil set the default settings for accounts.
+
+- name: "Create administrative default group"
+  group:
+    name: "{{ admin_group }}"
+    state: present
+  
+- name: "Create administrative local account"
+  user:
+    name: "{{ admin_user }}"
+    shell: "/bin/bash"
+    group: "{{ admin_group }}"
+    groups: "sudo"
+    password: "{{ admin_pass | password_hash('sha512') }}"
+    update_password: always
+    state: present
+  no_log: true
+
+- name: "Add administrative user to sudoers"
+  lineinfile:
+     path: /etc/sudoers.d/{{ admin_user }}
+     line: "{{ admin_user }} ALL=NOPASSWD: ALL"
+     owner: root
+     group: root
+     mode: 0440 
+     create: yes
+
