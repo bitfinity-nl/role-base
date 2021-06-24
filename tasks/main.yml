@@ -14,15 +14,15 @@
     name: /etc/ansible/roles/
     state: directory
     
-- name: "Install and configure base settings"
-  import_tasks: 01-account-settings.yml
+#- name: "Install and configure base settings"
+#  import_tasks: 01-account-settings.yml
 
-- name: "Configure Network settings"
-  import_tasks: 02-network-settings.yml
+#- name: "Configure Network settings"
+#  import_tasks: 02-network-settings.yml
 
-- name: "Install and configure UFW Firewall for UrBackup server"
-  import_tasks: 03-security-settings.yml
+#- name: "Install and configure UFW Firewall for UrBackup server"
+#  import_tasks: 03-security-settings.yml
 
-- name: "Generate selfsigned certificates"
-  import_tasks: 04-selfsigned-certificate.yml
+#- name: "Generate selfsigned certificates"
+#  import_tasks: 04-selfsigned-certificate.yml
 
