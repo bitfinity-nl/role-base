@@ -1,0 +1,19 @@
+---
+# Title: Networking
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: IT Operations
+# File: tasks/02-network-settings.yml
+#
+# Description:
+#   Playbook voor configuring networking.
+
+- name: "Transfer /etc/netplan/01-netcfg.yml.j2 /etc/netplan/01-netcfg.yaml"
+  template:
+    src: templates/01-netcfg.yml.j2
+    dest: /etc/netplan/01-netcfg.yaml
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
+  notify: netplan_apply
