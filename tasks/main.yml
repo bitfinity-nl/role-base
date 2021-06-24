@@ -17,8 +17,8 @@
 - name: "Install and configure base settings"
   import_tasks: 01-account-settings.yml
 
-#- name: "Configure Network settings"
-#  import_tasks: 02-network-settings.yml
+- name: "Configure Network settings"
+  import_tasks: 02-network-settings.yml
 
 #- name: "Install and configure UFW Firewall for UrBackup server"
 #  import_tasks: 03-security-settings.yml
