@@ -10,7 +10,7 @@
 
 - name: "Transfer /etc/netplan/01-netcfg.yml.j2 /etc/netplan/01-netcfg.yaml"
   template:
-    src: 01-netcfg.yml.j2
+    src: templates/01-netcfg-yml.j2
     dest: /etc/netplan/01-netcfg.yaml
     owner: root
     group: root
