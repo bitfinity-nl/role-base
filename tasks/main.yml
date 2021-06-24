@@ -14,8 +14,8 @@
     name: /etc/ansible/roles/
     state: directory
     
-#- name: "Install and configure base settings"
-#  import_tasks: 01-account-settings.yml
+- name: "Install and configure base settings"
+  import_tasks: 01-account-settings.yml
 
 #- name: "Configure Network settings"
 #  import_tasks: 02-network-settings.yml
