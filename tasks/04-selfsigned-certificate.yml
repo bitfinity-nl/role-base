@@ -1,0 +1,42 @@
+---
+# Title: Selfsigned certificate
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: IT Operations
+# File: tasks/04-selfsigned-certificate.yml
+#
+# Description:
+#   Playbook for installing InvoiceNinja
+#   on a Ubuntu server.
+
+- name: "Install APT packages"
+  apt:
+    pkg:
+    - python3-pip
+    
+- name: Ensure python OpenSSL dependencies are installed.
+  pip:
+    name: pyOpenSSL
+    state: present
+    
+- name: Ensure directory exists for local self-signed TLS certs.
+  file:
+    path: /etc/selfcert/live/{{ cert_servername }}
+    state: directory
+
+- name: Generate an OpenSSL private key.
+  openssl_privatekey:
+    path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+
+- name: Generate an OpenSSL CSR.
+  openssl_csr:
+    path: /etc/ssl/private/{{ cert_servername }}.csr
+    privatekey_path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+    common_name: "{{ cert_servername }}"
+
+- name: Generate a Self Signed OpenSSL certificate.
+  openssl_certificate:
+    path: /etc/selfcert/live/{{ cert_servername }}/fullchain.pem
+    privatekey_path: /etc/selfcert/live/{{ cert_servername }}/privkey.pem
+    csr_path: /etc/ssl/private/{{ cert_servername }}.csr
+    provider: selfsigned
