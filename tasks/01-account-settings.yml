@@ -33,3 +33,12 @@
      mode: 0440 
      create: yes
 
+- name: "Remove bootstrap user {{ bootstrap_sudoers }} from sudoers"
+  file:
+    path: "/etc/sudoers.d/{{ bootstrap_sudoers }}"
+    state: absent
+
+- name: "Disable bootstrap account {{ bootstrap_sudoers }}"
+  ansible.builtin.user:
+    name: "{{ bootstrap_user }}"
+    expires: 0
