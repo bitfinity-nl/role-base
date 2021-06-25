@@ -41,4 +41,5 @@
 - name: "Disable bootstrap account {{ bootstrap_sudoers }}"
   ansible.builtin.user:
     name: "{{ bootstrap_user }}"
+    shell: /sbin/nologin
     expires: 0
