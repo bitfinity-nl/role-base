@@ -10,3 +10,7 @@
 #   - Windows;
 #   - Ubuntu;
 
+- name: "Configure Ubuntu"
+  import_tasks: ubt/ubt-main.yml
+  when: 
+    - ansible_os_family == "Windows"
