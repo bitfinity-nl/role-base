@@ -1,0 +1,12 @@
+---
+# Title: main.yml
+#
+# Author: bitfinity-nl - L. Rutten
+# Owner: IT Operations
+# File: tasks/main.yml
+#
+# Description:
+#   Role for configuring OS base settings:
+#   - Windows;
+#   - Ubuntu;
+
