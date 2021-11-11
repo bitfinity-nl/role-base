@@ -1,0 +1,26 @@
+---
+# Title: Windows Activation
+#
+# Author: Bitfinity-NL / L. Rutten
+# Owner: Bitfinity-NL / IT Operations
+#
+# File: defaults/win-settings.yml
+#
+# Description:
+#   This defaults file contains the steps
+#   for activating Windows Evaluation
+
+
+#  --- Windows Activation ---
+#
+#  win_state           : 'disabled'                                  # Set 'enabled' or 'disabled' for activating Windows or not.
+#  win_edition         : 'ServerDatacenter'                          # Set Windows Edition (Can be found in system settings).
+#  win_os_name         : 'Microsoft Windows Server 2019 Datacenter'  # Set Windows OS name for matching version (ansible -m setup <host>).
+#  win_productkey_temp : 'WMDGN-G9PQG-XVVXX-R3X43-63DFG'             # Set temp productkey for converting from evaluation to definite edition. 
+#  win_productkey      : '{{ def_win_datacenter_key }}'              # Set your own productkey.
+#
+win_state           : '{{ def_win_state }}'
+win_edition         : 'ServerDatacenter'
+win_os_name         : 'Microsoft Windows Server 2019 Datacenter'
+win_productkey_temp : 'WMDGN-G9PQG-XVVXX-R3X43-63DFG'
+win_productkey      : '{{ def_win_datacenter_key }}'
