@@ -1,0 +1,34 @@
+---
+# Title: Windows Activation
+#
+# Author: Bitfinity-NL / L. Rutten
+# Owner: Bitfinity-NL / IT Operations
+#
+# File: tasks/win/01-win-activation.yml
+#
+# Description:
+#   This task file contains the steps
+#   for activating Windows Evaluation
+
+- name: Get activations status
+  win_shell: |
+    $Status = (Get-CimInstance -ClassName SoftwareLicensingProduct -Filter "Name like 'Windows%'" | where PartialProductKey).licensestatus
+    If ($Status -ne 1) {Write-Host "notactivated"}    
+  register: activation_status
+      
+- name: "Change evaluation to {{ win_edition }}"
+  win_shell: "DISM.exe /Online /Set-Edition:{{ win_edition }} /AcceptEula /ProductKey:{{ win_productkey_temp }} "
+  when:
+    - activation_status.stdout == "notactivated\n"
+    - ansible_os_name == win_os_name
+  register: changed_os_version
+  
+- name: "Reboot when changed evalution changed to {{ win_edition }}"
+  win_reboot:
+  when: changed_os_version.changed == true
+  
+- name: "Change insert and activate windows"
+  win_shell: "slmgr.vbs //b -IPK {{ win_productkey }}"
+  when:
+    - activation_status.stdout == "notactivated\n"
+    - ansible_os_name == win_os_name
