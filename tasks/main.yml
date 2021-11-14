@@ -11,8 +11,8 @@
 #   - Windows;
 
 - name: "Include all .yml variable files"
-  include_vars:
-    dir: defaults/
+  include_defaults:
+    #dir: defaults/
     extensions:
       - 'yml'
       - 'yaml'
