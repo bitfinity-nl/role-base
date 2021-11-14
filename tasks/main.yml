@@ -10,10 +10,13 @@
 #   - Ubuntu;
 #   - Windows;
 
+#- name: "Include default/win-settings.yml"
+#  include_vars: "{{ item.varfile }}"
+#    - { osfamily: 'Windows', varfile: 'defaults/win-settings.yml' }
+
 - name: "Include default/win-settings.yml"
-  include_vars: "{{ item.varfile }}"
-    - { osfamily: 'Windows', varfile: 'defaults/win-settings.yml' }
-    
+  include_vars: defaults/win-settings.yml
+
 - name: "Configure Ubuntu"
   import_tasks: "{{ item.taskfile }}"
     - { taskfile: 'ubt/01-account-settings.yml' }
