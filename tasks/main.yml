@@ -10,12 +10,19 @@
 #   - Ubuntu;
 #   - Windows;
 
-- name: "Include all .yml variable files"
-  include_defaults:
-    #dir: defaults/
-    extensions:
-      - 'yml'
-      - 'yaml'
+
+#- name: "Include all .yml variable files"
+#  include_defaults:
+#    dir: defaults/
+#    extensions:
+#      - 'yml'
+#      - 'yaml'
+
+- name: "Include defaults"
+  include_vars: "{{ item }}"
+  with_items:
+    - defaults/main.yml
+    - defaults/win-settings.yml
 
 - name: "Configure Ubuntu"
   include_tasks: "{{ item.taskfile }}"
