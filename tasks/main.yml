@@ -11,13 +11,6 @@
 #   - Windows;
 
 
-#- name: "Include all .yml variable files"
-#  include_defaults:
-#    dir: defaults/
-#    extensions:
-#      - 'yml'
-#      - 'yaml'
-
 - name: "Include defaults"
   include_vars: "{{ item }}"
   with_items:
@@ -33,8 +26,8 @@
     - tasks/ubt/04-selfsigned-certificate.yml
   when: ansible_os_family == "Ubuntu"
   
-#- name: "Configure Windows"
-#  import_tasks: "{{ item.taskfile }}"
-#  with_items:
-#    - { taskfile: 'win/01-win-activation.yml' }
-#  when: ansible_os_family == "Windows"
+- name: "Configure Windows"
+  include_tasks: "{{ item.taskfile }}"
+  with_items:
+    - { taskfile: 'win/01-win-activation.yml' }
+  when: ansible_os_family == "Windows"
