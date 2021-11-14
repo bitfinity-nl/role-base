@@ -10,9 +10,6 @@
 #   - Ubuntu;
 #   - Windows;
 
-#- name: "Include default/win-settings.yml"
-#  include_vars: "{{ item.varfile }}"
-#    - { osfamily: 'Windows', varfile: 'defaults/win-settings.yml' }
 
 - name: "Include all .yml variable files"
   include_vars:
