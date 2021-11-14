@@ -3,7 +3,7 @@
 #
 # Author: bitfinity-nl - L. Rutten
 # Owner: bitfinity-nl
-# File: tasks/03-security-settings.yml
+# File: tasks/ubt/03-security-settings.yml
 #
 # Description:
 #   Playbook voor configuring security settings.
