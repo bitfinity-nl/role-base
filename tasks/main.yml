@@ -20,10 +20,10 @@
 - name: "Configure Ubuntu"
   import_tasks: "{{ item.taskfile }}"
   with_items:
-    - { taskfile: 'tasks/ubt/01-account-settings.yml' }
-    - { taskfile: 'tasks/ubt/02-network-settings.yml' }
-    - { taskfile: 'tasks/ubt/03-security-settings.yml' }
-    - { taskfile: 'tasks/ubt/04-selfsigned-certificate.yml' }
+    - tasks/ubt/01-account-settings.yml
+    - tasks/ubt/02-network-settings.yml
+    - tasks/ubt/03-security-settings.yml
+    - tasks/ubt/04-selfsigned-certificate.yml
   #when: ansible_os_family == "Ubuntu"
   
 #- name: "Configure Windows"
