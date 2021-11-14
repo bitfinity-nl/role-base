@@ -8,6 +8,11 @@
 # Description:
 #   This task file wil set the default settings for accounts.
 
+- name: "Create Ansible directory structure"
+  file:
+    name: /etc/ansible/roles/
+    state: directory
+    
 - name: "Create administrative default group"
   group:
     name: "{{ admin_group }}"
