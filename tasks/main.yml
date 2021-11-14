@@ -11,7 +11,7 @@
 #   - Windows;
 
 - name: "Include default/win-settings.yml"
-  include_vars: "{{ item.varfile}}"
+  include_vars: "{{ item.varfile }}"
     - { osfamily: 'Windows', varfile: 'defaults/win-settings.yml' }
     
 - name: "Configure Ubuntu"
