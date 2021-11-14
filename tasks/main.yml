@@ -14,8 +14,16 @@
 #  include_vars: "{{ item.varfile }}"
 #    - { osfamily: 'Windows', varfile: 'defaults/win-settings.yml' }
 
-- name: "Include default/win-settings.yml"
-  include_vars: defaults/win-settings.yml
+- name: "Include all .yml variable files"
+  include_vars:
+    dir: defaults/
+    extensions:
+      - 'yml'
+      - 'yaml'
+
+
+#- name: "Include default/win-settings.yml"
+#  include_vars: defaults/win-settings.yml
 
 - name: "Configure Ubuntu"
   import_tasks: "{{ item.taskfile }}"
