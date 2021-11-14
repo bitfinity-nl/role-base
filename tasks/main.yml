@@ -24,10 +24,10 @@
     - { taskfile: 'tasks/ubt/02-network-settings.yml' }
     - { taskfile: 'tasks/ubt/03-security-settings.yml' }
     - { taskfile: 'tasks/ubt/04-selfsigned-certificate.yml' }
-  when: ansible_os_family == "Ubuntu"
+  #when: ansible_os_family == "Ubuntu"
   
-- name: "Configure Windows"
-  import_tasks: "{{ item.taskfile }}"
-  with_items:
-    - { taskfile: 'win/01-win-activation.yml' }
-  when: ansible_os_family == "Windows"
+#- name: "Configure Windows"
+#  import_tasks: "{{ item.taskfile }}"
+#  with_items:
+#    - { taskfile: 'win/01-win-activation.yml' }
+#  when: ansible_os_family == "Windows"
