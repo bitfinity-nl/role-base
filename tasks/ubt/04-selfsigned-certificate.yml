@@ -6,8 +6,8 @@
 # File: tasks/ubt/04-selfsigned-certificate.yml
 #
 # Description:
-#   Playbook for installing InvoiceNinja
-#   on a Ubuntu server.
+#   Task file for generating selfsigned
+#   certificates on a Ubuntu server.
 
 - name: "Install APT packages"
   apt:
