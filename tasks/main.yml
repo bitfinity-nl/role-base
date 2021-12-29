@@ -20,6 +20,19 @@
 - name: "Configure tasks/ubt/01-account-settings.yml"
   include_tasks: "tasks/ubt/01-account-settings.yml"
   when: ansible_distribution == "Ubuntu"
+  
+- name: "Configure tasks/ubt/02-network-settings.yml"
+  include_tasks: "tasks/ubt/02-network-settings.yml"
+  when: ansible_distribution == "Ubuntu" 
+  
+- name: "Configure tasks/ubt/03-security-settings.yml"
+  include_tasks: "tasks/ubt/03-security-settings.yml"
+  when: ansible_distribution == "Ubuntu"   
+  
+- name: "Configure tasks/ubt/04-selfsigned-certificate.yml"
+  include_tasks: "tasks/ubt/04-selfsigned-certificate.yml"
+  when: ansible_distribution == "Ubuntu"   
+  
   #with_items:
   #  - tasks/ubt/01-account-settings.yml
   #  - tasks/ubt/02-network-settings.yml
