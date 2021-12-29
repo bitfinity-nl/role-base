@@ -24,7 +24,7 @@
     - tasks/ubt/02-network-settings.yml
     - tasks/ubt/03-security-settings.yml
     - tasks/ubt/04-selfsigned-certificate.yml
-  when: ansible_os_family == "Ubuntu"
+  when: ansible_distribution == "Ubuntu"
   
 - name: "Configure Windows"
   include_tasks: "{{ item.taskfile }}"
