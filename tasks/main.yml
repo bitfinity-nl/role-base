@@ -17,13 +17,14 @@
     - defaults/main.yml
     - defaults/win-settings.yml
 
-- name: "Configure Ubuntu"
-  include_tasks: "{{ item.taskfile }}"
-  with_items:
-    - tasks/ubt/01-account-settings.yml
-    - tasks/ubt/02-network-settings.yml
-    - tasks/ubt/03-security-settings.yml
-    - tasks/ubt/04-selfsigned-certificate.yml
+- name: "Configure tasks/ubt/01-account-settings.yml"
+  include_tasks: "tasks/ubt/01-account-settings.yml"
+  when: ansible_distribution == "Ubuntu"
+  #with_items:
+  #  - tasks/ubt/01-account-settings.yml
+  #  - tasks/ubt/02-network-settings.yml
+  #  - tasks/ubt/03-security-settings.yml
+  #  - tasks/ubt/04-selfsigned-certificate.yml
   when: ansible_distribution == "Ubuntu"
   
 - name: "Configure Windows"
