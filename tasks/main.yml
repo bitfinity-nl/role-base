@@ -10,13 +10,6 @@
 #   - Ubuntu;
 #   - Windows;
 
-
-#- name: "Include defaults"
-#  include_vars: "{{ item }}"
-#  with_items:
-#    - defaults/main.yml
-#    - defaults/win-settings.yml
-
 - name: "Configure tasks/ubt/01-account-settings.yml"
   include_tasks: "tasks/ubt/01-account-settings.yml"
   when: ansible_distribution == "Ubuntu"
